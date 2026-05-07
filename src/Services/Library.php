@@ -1,11 +1,10 @@
 <?php
-
 class Library {
 
-    private $db;
+    private $pdo;
 
-    public function __construct($dbConnection) {
-        $this->db = $dbConnection;
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
     }
     //  Search Book 
     public function searchBook($keyword){
@@ -15,7 +14,7 @@ class Library {
                 OR isbn LIKE :kw
                 LIMIT 1";
 
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute([
             'kw' => "%$keyword%"
@@ -31,7 +30,7 @@ public function borrowBook($memberId, $isbn){
 
     // 1. get book
     $sql = "SELECT * FROM books WHERE isbn = :isbn";
-    $stmt = $this->db->prepare($sql);
+    $stmt = $this->pdo->prepare($sql);
     $stmt->execute(['isbn' => $isbn]);
 
     $book = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -46,14 +45,14 @@ public function borrowBook($memberId, $isbn){
                    status = 'emprunté'
                WHERE isbn = :isbn";
 
-    $stmt2 = $this->db->prepare($update);
+    $stmt2 = $this->pdo->prepare($update);
     $stmt2->execute(['isbn' => $isbn]);
 
     // 3. insert borrow
     $insert = "INSERT INTO emprunts (id_member, id_book, borrow_date)
                VALUES (:id_member, :id_book, NOW())";
 
-    $stmt3 = $this->db->prepare($insert);
+    $stmt3 = $this->pdo->prepare($insert);
 
     $stmt3->execute([
         'id_member' => $memberId,
@@ -70,7 +69,7 @@ public function returnBook($isbn){
     // 1. get book
     $sql = "SELECT * FROM books WHERE isbn = :isbn";
 
-    $stmt = $this->db->prepare($sql);
+    $stmt = $this->pdo->prepare($sql);
 
     $stmt->execute([
         'isbn' => $isbn
@@ -89,7 +88,7 @@ public function returnBook($isbn){
                    status = 'disponible'
                WHERE isbn = :isbn";
 
-    $stmt2 = $this->db->prepare($update);
+    $stmt2 = $this->pdo->prepare($update);
 
     $stmt2->execute([
         'isbn' => $isbn
@@ -99,7 +98,7 @@ public function returnBook($isbn){
     $delete = "DELETE FROM emprunts
                WHERE id_book = :id_book";
 
-    $stmt3 = $this->db->prepare($delete);
+    $stmt3 = $this->pdo->prepare($delete);
 
     $stmt3->execute([
         'id_book' => $book['id']
@@ -119,7 +118,7 @@ public function getBorrowedBooks($memberId){
             ON emprunts.id_book = books.id
             WHERE emprunts.id_member = :id_member";
 
-    $stmt = $this->db->prepare($sql);
+    $stmt = $this->pdo->prepare($sql);
 
     $stmt->execute([
         'id_member' => $memberId
@@ -127,19 +126,6 @@ public function getBorrowedBooks($memberId){
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-}
-require_once __DIR__ . '/../Entities/Book.php';
-
-class Library
-{
-
-    private $pdo;
-
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
-
     public function addBook()
     {
         $isbn = readline("ISBN: ");
@@ -177,8 +163,6 @@ class Library
         ]);
 
         $userId = $this->pdo->lastInsertId();
-
-       
         $sql = "INSERT INTO members(id_user, max_books, is_active)
             VALUES(:id_user, :max_books, 1)";
 
