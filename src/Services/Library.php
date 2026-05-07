@@ -63,4 +63,18 @@ class Library
 
         echo "Membre créé";
     }
+    public function listBooks()
+    {
+
+        $sql = "SELECT * FROM books";
+
+        $stmt = $this->pdo->query($sql);
+
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($books as $book) {
+            echo "Livre ID :" . $book['id'] . "\n" . $book['title'] . " - " . $book['author'] . " - " .  $book['status'] . " ";
+        }
+    }
+    
 }
