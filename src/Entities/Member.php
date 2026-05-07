@@ -19,4 +19,10 @@ class Members extends users {
         public function getBrowerbook(){
             return $this->browerbook;
         }
+        public function setType(){
+            return $this->type;
+        }
+        public function setBrowbook(){
+            return $this->browerbook;
+        }
 }
