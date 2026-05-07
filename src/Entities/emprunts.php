@@ -24,4 +24,17 @@ class emprunts {
      public function getIdMemeber(){
         return $this->id_member;
     }
+
+    public function setDateemprunt(){
+        return $this->dateemprunt;
+    }
+    public function setDateretoure(){
+        return $this->dateretoure;
+    }
+    public function setIDBook(){
+        return $this->id_book;
+    }
+    public function setIdMember(){
+        return $this->id_member;
+    }
 }
