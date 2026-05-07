@@ -3,7 +3,7 @@
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/src/Services/Library.php';
 
-$db = Database::connect();
+$db = $pdo;
 $library = new Library($db);
 
 while (true) {

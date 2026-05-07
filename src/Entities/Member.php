@@ -1,11 +1,10 @@
 <?php
 require_once './User.php';
 
-class Members extends users {
+class Members extends  User{
         private $type;
         private $browerbook;
 
-      
         public function __construct($name, $email,$type,$browerbook)
         {
             return parent::__construct($name, $email);
@@ -25,4 +24,5 @@ class Members extends users {
         public function setBrowbook(){
             return $this->browerbook;
         }
+       
 }

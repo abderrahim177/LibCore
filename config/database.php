@@ -1,30 +1,13 @@
 <?php
+$dsn = "mysql:host=localhost;dbname=libcore;charset=utf8";
+$user = "root";
+$password = "";
 
-class Database {
+try {
+    $pdo = new PDO($dsn, $user, $password);
 
-    private static ?PDO $conn = null;
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    public static function connect(): PDO {
-
-        if (self::$conn === null) {
-
-            $host = "localhost";
-            $dbname = "libcore";
-            $username = "root";
-            $password = "";
-
-            self::$conn = new PDO(
-                "mysql:host=$host;dbname=$dbname",
-                $username,
-                $password
-            );
-
-            self::$conn->setAttribute(
-                PDO::ATTR_ERRMODE,
-                PDO::ERRMODE_EXCEPTION
-            );
-        }
-
-        return self::$conn;
-    }
+} catch(PDOException $e) {
+    die("Erreur : " . $e->getMessage());
 }
