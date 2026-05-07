@@ -92,4 +92,17 @@ class Library
 
         echo "Livre en réparation";
     }
+    public function deleteBook()
+    {
+    $id = readline("ID Book: ");
+        $sql = "DELETE FROM books WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':id' => $id
+        ]);
+
+        echo "Livre supprimé";
+    }
 }
