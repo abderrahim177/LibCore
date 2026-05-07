@@ -1,34 +1,39 @@
 <?php
-
 class Books {
+
     private $title;
     private $isbn;
     private $isavailable;
 
-    public function __construct($title , $isbn , $isavailable)
-    {
+    public function __construct($title, $isbn, $isavailable) {
+
         $this->title = $title;
-        $this->isbn= $isbn;
+        $this->isbn = $isbn;
         $this->isavailable = $isavailable;
     }
-    public function getTitle(){
+
+    public function getTitle() {
         return $this->title;
     }
-     
-    public function getIsbn(){
+
+    public function getIsbn() {
         return $this->isbn;
     }
-    public function getIsavailable(){
+
+    public function getIsavailable() {
         return $this->isavailable;
     }
 
-    public function settitle(){
-        return $this->title;
+    // setters correct
+    public function setTitle($title) {
+        $this->title = $title;
     }
-    public function setIsbn(){
-        return $this->isbn;
+
+    public function setIsbn($isbn) {
+        $this->isbn = $isbn;
     }
-    public function setIsavailable(){
-        return $this->isavailable;
+
+    public function setIsavailable($isavailable) {
+        $this->isavailable = $isavailable;
     }
 }
