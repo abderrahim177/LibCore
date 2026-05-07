@@ -150,12 +150,4 @@ INSERT INTO emprunts (
 ('2026-05-02 14:30:00', '2026-05-05 16:00:00', 3, 2),
 ('2026-05-03 09:15:00', NULL, 5, 3);
 
--- =========================
--- VERIFICATION
--- =========================
-SELECT * FROM libraries;
-SELECT * FROM users;
-SELECT * FROM members;
-SELECT * FROM librarians;
-SELECT * FROM books;
-SELECT * FROM emprunts;
+
