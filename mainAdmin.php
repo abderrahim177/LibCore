@@ -15,5 +15,38 @@ while (true) {
     echo "5 - Supprimer un livre\n";
     echo "0 - Quitter\n";
 
-    
+    $choice = readline("Choix: ");
+
+    if ($choice == 0) {
+        echo "Bye Admin 👋";
+        break;
+    }
+
+    switch ($choice) {
+
+        case 1:
+            $library->addBook();
+            break;
+
+        case 2:
+            $library->createMember();
+            break;
+
+        case 3:
+            $library->listBooks();
+            break;
+
+        case 4:
+            
+            $library->markAsRepair();
+            break;
+
+        case 5:
+            
+            $library->deleteBook();
+            break;
+
+        default:
+            echo "Option invalide\n";
+    }
 }
