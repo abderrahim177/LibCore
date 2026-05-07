@@ -21,4 +21,14 @@ class Books {
     public function getIsavailable(){
         return $this->isavailable;
     }
+
+    public function settitle(){
+        return $this->title;
+    }
+    public function setIsbn(){
+        return $this->isbn;
+    }
+    public function setIsavailable(){
+        return $this->isavailable;
+    }
 }
