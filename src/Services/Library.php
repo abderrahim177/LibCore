@@ -76,5 +76,20 @@ class Library
             echo "Livre ID :" . $book['id'] . "\n" . $book['title'] . " - " . $book['author'] . " - " .  $book['status'] . " ";
         }
     }
-    
+    public function markAsRepair()
+    {
+    $id = readline("ID Book: ");
+        $sql = "UPDATE books
+            SET status = 'en réparation',
+                is_available = 0
+            WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':id' => $id
+        ]);
+
+        echo "Livre en réparation";
+    }
 }
