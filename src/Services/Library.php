@@ -32,4 +32,35 @@ class Library
 
         echo "Livre ajouté";
     }
+    public function createMember()
+    {
+        $name = readline("Nom: ");
+        $email = readline("Email: ");
+        $max = readline("Max books (3/10): ");
+        // 1 - insert user
+        $sql = "INSERT INTO users(name, email)
+            VALUES(:name, :email)";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':name' => $name,
+            ':email' => $email
+        ]);
+
+        $userId = $this->pdo->lastInsertId();
+
+       
+        $sql = "INSERT INTO members(id_user, max_books, is_active)
+            VALUES(:id_user, :max_books, 1)";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':id_user' => $userId,
+            ':max_books' => $max
+        ]);
+
+        echo "Membre créé";
+    }
 }
