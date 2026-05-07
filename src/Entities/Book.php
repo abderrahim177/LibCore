@@ -1,39 +1,79 @@
 <?php
-class Books {
 
-    private $title;
+class Book {
+
+    private $id;
     private $isbn;
-    private $isavailable;
+    private $title;
+    private $author;
+    private $isAvailable;
+    private $status;
+    private $idLibrary;
 
-    public function __construct($title, $isbn, $isavailable) {
+    public function __construct($isbn, $title, $author, $idLibrary) {
 
-        $this->title = $title;
         $this->isbn = $isbn;
-        $this->isavailable = $isavailable;
+        $this->title = $title;
+        $this->author = $author;
+        $this->idLibrary = $idLibrary;
+
+        $this->isAvailable = true;
+        $this->status = "disponible";
     }
 
-    public function getTitle() {
-        return $this->title;
+
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getIsbn() {
         return $this->isbn;
     }
 
-    public function getIsavailable() {
-        return $this->isavailable;
+    public function getTitle() {
+        return $this->title;
     }
 
-    // setters correct
-    public function setTitle($title) {
-        $this->title = $title;
+    public function getAuthor() {
+        return $this->author;
     }
+
+    public function getIsAvailable() {
+        return $this->isAvailable;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function getIdLibrary() {
+        return $this->idLibrary;
+    }
+
+ 
 
     public function setIsbn($isbn) {
         $this->isbn = $isbn;
     }
 
-    public function setIsavailable($isavailable) {
-        $this->isavailable = $isavailable;
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+
+    public function setAuthor($author) {
+        $this->author = $author;
+    }
+
+    public function setAvailable($status) {
+        $this->isAvailable = $status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+
+    public function setIdLibrary($idLibrary) {
+        $this->idLibrary = $idLibrary;
     }
 }
