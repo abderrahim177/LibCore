@@ -13,7 +13,7 @@ while (true) {
     echo "=====================\n";
 
     echo "1. Search Book\n";
-    echo "2. Exit\n";
+    echo "2. emprunt\n";
     echo "3. returner\n";
     echo "4. My Borrowed Books\n";
     echo "5. Exit\n";
@@ -40,7 +40,7 @@ while (true) {
         echo "✔ Book borrowed successfully\n";
     }
     else {
-        echo "❌ Book not available\n";
+        echo " Book not available\n";
     }
 }
 
@@ -52,7 +52,7 @@ while (true) {
 
         if ($result) {
 
-            echo "✔ Book returned successfully\n";
+            echo " Book returned successfully\n";
         }
         else {
 
@@ -60,7 +60,7 @@ while (true) {
         }
     }
 
-    // EXIT
+    // emprunt
     elseif ($choice == 4) {
 
     $memberId = readline("Enter Member ID: ");
@@ -81,7 +81,7 @@ while (true) {
     }
         else {
 
-            echo "❌ No borrowed books\n";
+            echo " No borrowed books\n";
         }
     }
     else{
