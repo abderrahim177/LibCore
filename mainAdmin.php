@@ -18,7 +18,7 @@ while (true) {
     $choice = readline("Choix: ");
 
     if ($choice == 0) {
-        echo "Bye Admin 👋";
+        echo "Bye Admin ";
         break;
     }
 
